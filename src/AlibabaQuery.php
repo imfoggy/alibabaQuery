@@ -14,7 +14,7 @@ class AlibabaQuery {
 	 * @return [type]            [description]
 	 */
 	public static function init(){
-		self::run();
+		(new AlibabaQuery())->run();
 	}
 
 
