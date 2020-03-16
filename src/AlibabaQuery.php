@@ -6,6 +6,19 @@ use QL\QueryList;
 class AlibabaQuery {
 
 	/**
+	 * 引导
+	 * @Author Foggy
+	 * @Date   2020-03-16
+	 * @WeChat [vita_hacker]
+	 * @Email  [x_foggy@163.com]
+	 * @return [type]            [description]
+	 */
+	public static function init(){
+		self::run();
+	}
+
+
+	/**
 	 * 执行
 	 * @Author Foggy
 	 * @Date   2020-03-16
@@ -13,7 +26,7 @@ class AlibabaQuery {
 	 * @Email  [x_foggy@163.com]
 	 * @return [type]            [description]
 	 */
-	public function run(){
+	protected function run(){
 		$urls = $this->getInputUrl()->urlFormat();
 		$data = [];
 		QueryList::multiGet($urls)->success(function(QueryList $ql,Response $response, $index) use($urls, &$data){
