@@ -1,5 +1,5 @@
 {
-	"name": "foggy/alibabaQuery",
+	"name": "foggy/alibaba-query",
 	"description": "进入一个店铺后，批量抓取其搜索的关键字的所有商品的标题",
 	"type": "library",
     "require": {
