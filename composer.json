@@ -1,0 +1,14 @@
+{
+	"name": "foggy/alibabaQuery",
+	"description": "进入一个店铺后，批量抓取其搜索的关键字的所有商品的标题",
+	"type": "library",
+    "require": {
+        "jaeger/querylist": "^4.1",
+        "php": "~7.2.1"
+    },
+    "autoload": {
+    	"psr-4": {
+    		"Foggy\\": "src/"
+    	}
+    }
+}
