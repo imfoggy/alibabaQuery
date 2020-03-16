@@ -15,8 +15,8 @@ class AlibabaQuery {
 	 */
 	public function run(){
 		$this->getInputUrl();
-		$html = QueryList::get($_POST['url']);
-		$urlParams = parse_url($_POST['url']);
+		$html = QueryList::get($this->inputUrl);
+		$urlParams = parse_url($this->inputUrl);
 		$domain = $urlParams['scheme'].'://'.$urlParams['host'];
 		//获取到结果一共有多少页
 		$urls = [];
