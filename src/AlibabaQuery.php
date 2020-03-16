@@ -14,27 +14,15 @@ class AlibabaQuery {
 	 * @return [type]            [description]
 	 */
 	public function run(){
-		$this->getInputUrl();
-		$html = QueryList::get($this->inputUrl);
-		$count = $html->find('.next-pagination-list a:eq(-1)')->text();
-		if(empty($count)){
-			print '搜索失败，请手动检索此关键字下是否有商品';
-			exit;
-		}
-
-		$urls = $this->urlFormat();
-		
+		$urls = $this->getInputUrl()->urlFormat();
 		$data = [];
-
 		QueryList::multiGet($urls)->success(function(QueryList $ql,Response $response, $index) use($urls, &$data){
 			$url = $urls[$index+1];
 			$listHtml = $ql->get($url);
 			$title = $listHtml->find('.component-product-list .product-item .product-info a')->attrs('title')->all();
 			$data[$index+1] = $title;
 		})->send();
-
 		print "数据采集成功，正在格式化处理...\r\n";
-
 		//打印结果
 		$this->putFiles($data);
 	}
@@ -60,6 +48,8 @@ class AlibabaQuery {
 			echo "\r\n Fetching..., please wait...\r\n";
 			sleep(2);
 		}
+
+		return $this;
 	}
 
 	/**
@@ -72,6 +62,12 @@ class AlibabaQuery {
 	 * @return [type]                 [description]
 	 */
 	protected function urlFormat(){
+		$html = QueryList::get($this->inputUrl);
+		$count = $html->find('.next-pagination-list a:eq(-1)')->text();
+		if(empty($count)){
+			print '搜索失败，请手动检索此关键字下是否有商品';
+			exit;
+		}
 		$urlParams = parse_url($this->inputUrl);
 		$domain = $urlParams['scheme'].'://'.$urlParams['host'];
 		//获取到结果一共有多少页
