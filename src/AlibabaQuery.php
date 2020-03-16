@@ -65,6 +65,9 @@ class AlibabaQuery {
 		}
 		$time = date('Y-m-d-H-i-s', time());
 		$file = './data/'.$time.'.txt';
+		if(!is_dir('./data')){
+			mkdir('./data/', 0755, true);
+		}
 		file_put_contents($file, $string);
 		print "------------------------------<br>";
 		echo "数据已保存，文件名是".$file.",请 <a href='download.php?file=".$time."'><点击这里></a> 进行下载。或者你可以 <a href='index.php'>返回上一页</a>";
