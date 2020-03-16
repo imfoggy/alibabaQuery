@@ -35,9 +35,9 @@ class AlibabaQuery {
 		for($i = 1; $i<= $count; $i++){
 			$urls[$i] = $param['scheme'].'://'.$param['host'].$param['path'].'/'.$i.'.html';
 		}
-		print "<br>------------------------------<br>";
-		print '搜索成功，本次搜索一共有'.count($urls).'页<br>';
-		print "------------------------------<br>";
+		print "------------------------------\r\n";
+		print '搜索成功，本次搜索一共有'.count($urls).'页'."\r\n";
+		print "------------------------------\r\n";
 
 		$data = [];
 
@@ -49,19 +49,19 @@ class AlibabaQuery {
 			$data[$index+1] = $title;
 		})->send();
 
-		print "数据采集成功，正在格式化处理...<br><br>";
+		print "数据采集成功，正在格式化处理...\r\n";
 
 		//打印结果
 		$string = '';
 		ksort($data);
 		foreach ($data as $key => $value) {
 			$string .= '--------第'.$key.'页--------'."\r\n\r\n";
-			print '--------第'.$key.'页--------<br>';;
+			print '--------第'.$key.'页--------'."\r\n";;
 			foreach ($value as $k => $v) {
 				$string .= ($k+1).':'.$v."\r\n\r\n";
-				print ($k+1).':'.$v.'<br>';
+				print ($k+1).':'.$v."\r\n";
 			}
-			print "<br>";
+			print "\r\n";
 		}
 		$time = date('Y-m-d-H-i-s', time());
 		$file = './data/'.$time.'.txt';
@@ -69,8 +69,8 @@ class AlibabaQuery {
 			mkdir('./data/', 0755, true);
 		}
 		file_put_contents($file, $string);
-		print "------------------------------<br>";
-		echo "数据已保存，文件名是".$file.",请 <a href='download.php?file=".$time."'><点击这里></a> 进行下载。或者你可以 <a href='index.php'>返回上一页</a>";
+		print "------------------------------\r\n";
+		echo "数据已保存，文件名是".$file.",请 进入data目录查看";
 	}
 
 	/**
